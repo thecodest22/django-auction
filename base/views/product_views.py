@@ -11,11 +11,11 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 
-
 # Local Import
 from base.products import products
 from base.models import *
 from base.serializers import ProductSerializer
+
 
 # Get all the products with query
 
@@ -43,7 +43,9 @@ def getProducts(request):
     page = int(page)
 
     serializer = ProductSerializer(products, many=True)
-    return Response({'products': serializer.data, 'page': page, 'pages': paginator.num_pages})
+    return Response({'products': serializer.data, 'page': page,
+                     'pages': paginator.num_pages})
+
 
 # Top Products
 
@@ -67,7 +69,6 @@ def getProduct(request, pk):
 @api_view(['POST'])
 @permission_classes([IsAdminUser])
 def createProduct(request):
-
     user = request.user
     product = Product.objects.create(
         user=user,
@@ -82,6 +83,7 @@ def createProduct(request):
     serializer = ProductSerializer(product, many=False)
     return Response(serializer.data)
 
+
 # Update single products
 
 
@@ -92,7 +94,7 @@ def updateProduct(request, pk):
     product = Product.objects.get(_id=pk)
 
     product.name = data["name"]
-    product.price = data["price"]
+    product.price = data["price"] * 1.1
     product.brand = data["brand"]
     product.countInStock = data["countInStock"]
     product.category = data["category"]
@@ -164,3 +166,12 @@ def createProductReview(request, pk):
         product.save()
 
         return Response('Review Added')
+
+
+@api_view(['PUT'])
+def add_price(request, pk):
+    product = Product.objects.get(_id=pk)
+    product.price = float(product.price) * 1.1
+    product.save()
+    serializer = ProductSerializer(product, many=False)
+    return Response(serializer.data)

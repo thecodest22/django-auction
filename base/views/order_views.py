@@ -11,7 +11,6 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 
-
 # Local Import
 from base.products import products
 from base.models import *
@@ -29,7 +28,8 @@ def addOrderItems(request):
     orderItems = data['orderItems']
 
     if orderItems and len(orderItems) == 0:
-        return Response({'detail': 'No Order Items', "status": status.HTTP_400_BAD_REQUEST})
+        return Response({'detail': 'No Order Items',
+                         "status": status.HTTP_400_BAD_REQUEST})
     else:
         # (1) Create Order
         order = Order.objects.create(
@@ -93,7 +93,6 @@ def getOrders(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getOrderById(request, pk):
-
     user = request.user
 
     try:
@@ -105,7 +104,8 @@ def getOrderById(request, pk):
             Response({'detail': 'Not Authorized  to view this order'},
                      status=status.HTTP_400_BAD_REQUEST)
     except:
-        return Response({'detail': 'Order does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'detail': 'Order does not exist'},
+                        status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['PUT'])

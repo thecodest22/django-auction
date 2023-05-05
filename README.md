@@ -9,7 +9,7 @@
 1 Clone This Repo
 2 cd backend
 3 python -m venv env
-4 .\env\Scripts\activate
+4 source \env\Scripts\activate
 5 pip install -r requirements.txt 
 6 python manage.py runserver
 
@@ -40,3 +40,6 @@ A completely customized eCommerce / shopping cart application using Django, REAC
 - Mark orders as a delivered option
 - Checkout process (shipping, payment method, etc)
 - PayPal / credit card integration
+
+# Запрос на повышение цены
+http://127.0.0.1:8000/api/products/addprice/<product_id>/
