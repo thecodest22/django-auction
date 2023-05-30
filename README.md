@@ -1,45 +1,15 @@
-<h1 align=center>E-Commerce Website with Django + React & Redux</h1>
-<h2 align=center>Otaku House - Anime Merchandise and Cosplay Shop</h2>
+# Это тестовый сайт-магазин
 
-## ✨ [Live Link - Otaku House](https://otakuhouse.herokuapp.com/)
+## Фичи в разработке:
+- Полнофункциональная корзина
+- Обзоры продуктов и рейтинги
+- Карусель лучших товаров
+- Пагинация продукта
+- Функция поиска продукта
+- Профиль пользователя с заказами
+- Управление товарами и клиентами из-под админки
+- Страница сведений о заказе в админке
+- Процесс оформления заказа (доставка, способ оплаты и т. д.)
 
-### How to Run 🏃‍♀️
-
-```shell
-1 Clone This Repo
-2 cd backend
-3 python -m venv env
-4 source \env\Scripts\activate
-5 pip install -r requirements.txt 
-6 python manage.py runserver
-
-```
-
-### 📷 Project Screenshots
-
-![ss](./ss/ss1.png)
-![ss](./ss/ss2.png)
-![ss](./ss/ss3.png)
-![ss](./ss/ss4.png)
-![ss](./ss/ss5.png)
-![ss](./ss/ss6.png)
-
-### 🚀 Project Features
-
-A completely customized eCommerce / shopping cart application using Django, REACT and REDUX with the following functionality:
-
-- Full featured shopping cart
-- Product reviews and Ratings
-- Top products carousel
-- Product pagination
-- Product search feature
-- User profile with orders
-- Admin product management
-- Admin user management
-- Admin Order details page
-- Mark orders as a delivered option
-- Checkout process (shipping, payment method, etc)
-- PayPal / credit card integration
-
-# Запрос на повышение цены
+### Запрос на повышение цены
 http://127.0.0.1:8000/api/products/addprice/<product_id>/
