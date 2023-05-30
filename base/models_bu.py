@@ -6,12 +6,12 @@ from django.db.models.fields import BLANK_CHOICE_DASH
 # Create your models here.
 
 class Product(models.Model):
-    customer = models.ForeignKey(verbose_name='Клиент', to=User, on_delete=models.SET_NULL, null=True,
-                                 related_name='Товары', related_query_name='Товар')
-    title = models.CharField(max_length=200, blank=True, default='')
-    picture = models.ImageField(verbose_name='Изображение товара', blank=True, default="/img/defaultimg.png",
-                                upload_to="img/")
-    vendor = models.CharField(verbose_name='Производитель', max_length=200, blank=True, default='')
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    name = models.CharField(max_length=200, null=True, blank=True)
+    image = models.ImageField(null=True, blank=True,
+                              default="/images/placeholder.png",
+                              upload_to="images/")
+    brand = models.CharField(max_length=200, null=True, blank=True)
     category = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     rating = models.DecimalField(max_digits=12, decimal_places=2, null=True,
