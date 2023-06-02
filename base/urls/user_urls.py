@@ -1,15 +1,18 @@
-from django.urls import path
+from django.urls import path, include
 from base.views import user_views as views
 
-# urlpatterns = [
-#     path('register/', views.registerUser, name='register'),
-#     path('', views.getUsers, name="users"),
-#     path('profile/', views.getUserProfile, name="user_profile"),
-#     path('profile/update/', views.updateUserProfile,
-#          name="user_profile_update"),
-#     path('login/', views.MyTokenObtainPairView.as_view(),
-#          name='token_obtain_pair'),
-#     path('<str:pk>/', views.getUserById, name="get_user"),
-#     path('update/<str:pk>/', views.updateUser, name="updateUser"),
-#     path('delete/<str:pk>/', views.deleteUser, name="deleteUser"),
-# ]
+
+app_name = 'base_users'
+
+urlpatterns = [
+    path('', views.get_users, name="get_users"),
+    path('<int:pk>/', include([
+        path('', views.get_user_by_id, name="get_user"),
+        path('update/', views.update_user, name="update_user"),  # PUT
+        path('delete/', views.delete_user, name="delete_user"),  # DELETE
+    ])),
+    path('profile/', views.get_user_profile, name="user_profile"),
+    path('profile/update/', views.update_user_profile, name="update_user_profile"),
+    path('register/', views.register_user, name='register_user'),
+    path('login/', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
+]
